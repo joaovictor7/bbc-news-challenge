@@ -1,5 +1,6 @@
 package com.bbcnewschallenge.feature.home.ui.home
 
+import com.bbcnewschallenge.core.domain.usecases.GetTopHeadlinesUseCase
 import com.bbcnewschallenge.core.domain.usecases.SendAnalyticsUseCase
 import com.bbcnewschallenge.core.router.di.qualifiers.NavGraphQualifier
 import com.bbcnewschallenge.core.router.enums.NavGraph
@@ -11,6 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class HomeViewModel @Inject constructor(
+    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase,
     override val sendAnalyticsUseCase: SendAnalyticsUseCase,
     @NavGraphQualifier(NavGraph.MAIN) override val navigationManager: NavigationManager
 ) : BaseViewModel<HomeUiState>(HomeAnalytic, HomeUiState()), HomeCommandReceiver {
@@ -19,6 +21,9 @@ internal class HomeViewModel @Inject constructor(
 
     override fun initUiState() {
         openScreenAnalytic()
+        runAsyncTask {
+            val e = getTopHeadlinesUseCase()
+        }
     }
 
     override fun navigateToHome2() {

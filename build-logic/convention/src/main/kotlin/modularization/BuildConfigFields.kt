@@ -13,9 +13,7 @@ import org.gradle.api.Project
 internal fun ApplicationDefaultConfig.setDefaultBuildConfigFields(project: Project) =
     with(project) {
         val properties = loadPropertiesFile(File.API_KEYS)
-        buildConfigField("String", "BFF_API_HOST", "\"\"") // Macbook
-//    buildConfigField("String", "BFF_API_HOST", "\"10.0.2.2\"") // Emulator
-        buildConfigField("int", "BFF_API_PORT", "0")
+        buildConfigField("String", "NEWS_API_API_HOST", "\"newsapi.org/v2/\"")
         buildConfigField("String", "NEWS_API_API_KEY", properties.getProperty("NEWS_API"))
     }
 

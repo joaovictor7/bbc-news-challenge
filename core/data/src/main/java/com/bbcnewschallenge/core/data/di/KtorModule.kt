@@ -67,15 +67,4 @@ internal object KtorModule {
             sanitizeHeader { header -> header == HttpHeaders.Authorization }
         }
     }
-
-    @Provides
-    @ApiQualifier(NetworkApi.BFF)
-    fun bffApi(
-        httpClient: HttpClient,
-        buildConfigProvider: BuildConfigProvider
-    ): HttpClient = httpClient.setHost(
-        buildConfigProvider.get.buildConfigFieldsModel.bffApiHost,
-        buildConfigProvider.get.buildConfigFieldsModel.bffApiPort,
-        NetworkApi.BFF
-    )
 }

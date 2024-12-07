@@ -4,17 +4,13 @@ import com.bbcnewschallenge.core.data.datasources.local.AppThemeDataSource
 import com.bbcnewschallenge.core.data.datasources.local.AppThemeDataSourceImpl
 import com.bbcnewschallenge.core.data.datasources.local.PreferenceDataSource
 import com.bbcnewschallenge.core.data.datasources.local.PreferenceDataSourceImpl
-import com.bbcnewschallenge.core.data.datasources.local.SessionDataSource
-import com.bbcnewschallenge.core.data.datasources.local.SessionDataSourceImpl
-import com.bbcnewschallenge.core.data.datasources.local.UserDataSource
-import com.bbcnewschallenge.core.data.datasources.local.UserDataSourceImpl
-import com.bbcnewschallenge.core.data.datasources.remote.AuthenticationDataSource
-import com.bbcnewschallenge.core.data.datasources.remote.AuthenticationDataSourceImpl
-import com.bbcnewschallenge.core.data.datasources.remote.AuthenticationFakeDataSourceImpl
 import com.bbcnewschallenge.core.data.datasources.remote.FirebaseAnalyticsDataSource
 import com.bbcnewschallenge.core.data.datasources.remote.FirebaseAnalyticsDataSourceImpl
 import com.bbcnewschallenge.core.data.datasources.remote.FirebaseRemoteConfigDataSource
 import com.bbcnewschallenge.core.data.datasources.remote.FirebaseRemoteConfigDataSourceImpl
+import com.bbcnewschallenge.core.data.datasources.remote.NewsApiDataSource
+import com.bbcnewschallenge.core.data.datasources.remote.NewsApiDataSourceImpl
+import com.bbcnewschallenge.core.data.datasources.remote.NewsApiFakeDataSourceImpl
 import com.bbcnewschallenge.core.data.di.qualifiers.ApiQualifier
 import com.bbcnewschallenge.core.data.enums.NetworkApi
 import com.bbcnewschallenge.core.data.providers.FakeInstanceProvider
@@ -46,12 +42,6 @@ internal abstract class DataSourceBindsModule {
     ): PreferenceDataSource
 
     @Binds
-    abstract fun userDataSource(userDataSourceImpl: UserDataSourceImpl): UserDataSource
-
-    @Binds
-    abstract fun sessionDataSource(sessionDataSourceImpl: SessionDataSourceImpl): SessionDataSource
-
-    @Binds
     abstract fun appThemeDataSource(appThemeDataSourceImpl: AppThemeDataSourceImpl): AppThemeDataSource
 }
 
@@ -62,15 +52,15 @@ internal object DataSourceProvidesModule {
     @Provides
     fun authenticationDataSource(
         fakeInstanceProvider: FakeInstanceProvider,
-        @ApiQualifier(NetworkApi.BFF) bffApi: HttpClient,
+        @ApiQualifier(NetworkApi.NEWS_API) newsApi: HttpClient,
         remoteCallUtils: RemoteCallUtils
-    ): AuthenticationDataSource = fakeInstanceProvider.getInstance(
-        instance = AuthenticationDataSourceImpl(
-            bffApi = bffApi,
-            remoteCallUtils = remoteCallUtils
+    ): NewsApiDataSource = fakeInstanceProvider.getInstance(
+        instance = NewsApiDataSourceImpl(
+            requestUtils = remoteCallUtils,
+            newsApi = newsApi
         ),
-        fakeInstance = AuthenticationFakeDataSourceImpl(
-            remoteCallUtils = remoteCallUtils
+        fakeInstance = NewsApiFakeDataSourceImpl(
+            requestUtils = remoteCallUtils
         )
     )
 }

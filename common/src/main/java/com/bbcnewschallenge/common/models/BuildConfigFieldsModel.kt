@@ -1,7 +1,6 @@
 package com.bbcnewschallenge.common.models
 
 data class BuildConfigFieldsModel(
-    val bffApiHost: String,
-    val bffApiPort: Int,
+    val newsApiHost: String,
     val newsApiKey: String
 )
