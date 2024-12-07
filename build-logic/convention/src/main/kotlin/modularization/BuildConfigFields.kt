@@ -35,8 +35,6 @@ internal fun ApplicationProductFlavor.setBuildConfigFields(
     flavor: Flavor
 ) = with(project) {
     when (flavor) {
-        Flavor.FREE -> {}
-        Flavor.FULL -> {}
         Flavor.PRODUCTION -> {}
         Flavor.DEVELOP -> {}
         Flavor.STAGING -> {}

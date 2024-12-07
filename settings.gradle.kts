@@ -20,7 +20,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ComposeTest"
+rootProject.name = "BBCNewsChallenge"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":common")
@@ -32,8 +32,4 @@ include(":core:data")
 include(":core:domain")
 include(":core:database")
 include(":core:security")
-include(":feature:login")
-include(":feature:root")
 include(":feature:home")
-include(":feature:configuration")
-include(":feature:profile")

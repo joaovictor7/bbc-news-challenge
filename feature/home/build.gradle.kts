@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.composetest.feature.home"
+    namespace = "com.bbcnewschallenge.feature.home"
 }
 
 dependencies {

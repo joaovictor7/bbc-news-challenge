@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.composetest.core.router"
+    namespace = "com.bbcnewschallenge.core.router"
 }
 
 dependencies {

@@ -17,19 +17,19 @@ gradlePlugin {
             }
         }
         registerPlugin(
-            id = "com.composetest.application",
+            id = "com.bbcnewschallenge.application",
             className = "ApplicationConventionPlugin"
         )
         registerPlugin(
-            id = "com.composetest.library",
+            id = "com.bbcnewschallenge.library",
             className = "LibraryConventionPlugin"
         )
         registerPlugin(
-            id = "com.composetest.compose",
+            id = "com.bbcnewschallenge.compose",
             className = "ComposeConventionPlugin"
         )
         registerPlugin(
-            id = "com.composetest.test",
+            id = "com.bbcnewschallenge.test",
             className = "TestConventionPlugin"
         )
     }

@@ -89,10 +89,10 @@ slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4
 
 [plugins]
 # Convention plugins
-composeTest-application = { id = "com.composetest.application" }
-composeTest-library = { id = "com.composetest.library" }
-composeTest-compose = { id = "com.composetest.compose" }
-composeTest-test = { id = "com.composetest.test" }
+composeTest-application = { id = "com.bbcnewschallenge.application" }
+composeTest-library = { id = "com.bbcnewschallenge.library" }
+composeTest-compose = { id = "com.bbcnewschallenge.compose" }
+composeTest-test = { id = "com.bbcnewschallenge.test" }
 
 # Another plugins
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.composetest.core.ui"
+    namespace = "com.bbcnewschallenge.core.ui"
 }
 
 dependencies {

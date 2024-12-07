@@ -1,0 +1,27 @@
+package com.bbcnewschallenge.core.database.database
+
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.bbcnewschallenge.core.database.converters.LocalDateTimeConverter
+import com.bbcnewschallenge.core.database.daos.SessionEntityDao
+import com.bbcnewschallenge.core.database.daos.UserEntityDao
+import com.bbcnewschallenge.core.database.entities.SessionEntity
+import com.bbcnewschallenge.core.database.entities.UserEntity
+
+internal const val DATABASE_NAME = "composetest_database"
+private const val DATABASE_VERSION = 1
+
+@Database(
+    version = DATABASE_VERSION,
+    exportSchema = false,
+    entities = [
+        SessionEntity::class,
+        UserEntity::class
+    ]
+)
+@TypeConverters(LocalDateTimeConverter::class)
+internal abstract class AppDatabase : RoomDatabase() {
+    abstract fun userEntityDao(): UserEntityDao
+    abstract fun sessionEntityDao(): SessionEntityDao
+}

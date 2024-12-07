@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.composetest.core.database"
+    namespace = "com.bbcnewschallenge.core.database"
 }
 
 dependencies {

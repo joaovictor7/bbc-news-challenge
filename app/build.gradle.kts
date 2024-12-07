@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    val appPackage = "com.composetest"
+    val appPackage = "com.bbcnewschallenge"
     namespace = appPackage
     defaultConfig {
         applicationId = appPackage
@@ -19,11 +19,7 @@ dependencies {
     implementation(projects.core.router)
     implementation(projects.core.data)
     implementation(projects.core.domain)
-    implementation(projects.feature.login)
-    implementation(projects.feature.root)
     implementation(projects.feature.home)
-    implementation(projects.feature.profile)
-    implementation(projects.feature.configuration)
     implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.splash.screen)
 }
