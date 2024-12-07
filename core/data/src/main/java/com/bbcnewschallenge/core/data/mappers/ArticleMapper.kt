@@ -17,7 +17,7 @@ internal class ArticleMapper @Inject constructor() {
             content = it.content
         )
     }
-    
+
     private companion object {
         val formatter: DateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME
     }

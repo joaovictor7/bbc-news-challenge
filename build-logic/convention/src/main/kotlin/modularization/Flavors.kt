@@ -1,10 +1,10 @@
 package modularization
 
 import appconfig.AppConfig
-import enums.Flavor
-import enums.FlavorDimension
 import com.android.build.api.dsl.ApplicationProductFlavor
 import com.android.build.gradle.BaseExtension
+import enums.Flavor
+import enums.FlavorDimension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 

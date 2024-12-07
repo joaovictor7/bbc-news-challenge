@@ -1,9 +1,5 @@
 package com.bbcnewschallenge.core.data.di
 
-import com.bbcnewschallenge.common.providers.BuildConfigProvider
-import com.bbcnewschallenge.core.data.di.qualifiers.ApiQualifier
-import com.bbcnewschallenge.core.data.enums.NetworkApi
-import com.bbcnewschallenge.core.data.extensions.setHost
 import com.bbcnewschallenge.core.domain.throwables.network.UnauthorizedRequestThrowable
 import dagger.Module
 import dagger.Provides

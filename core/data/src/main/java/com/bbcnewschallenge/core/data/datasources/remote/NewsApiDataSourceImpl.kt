@@ -10,7 +10,7 @@ import io.ktor.client.HttpClient
 internal class NewsApiDataSourceImpl(
     private val requestUtils: RemoteCallUtils,
     @ApiQualifier(NetworkApi.NEWS_API) private val newsApi: HttpClient
-): NewsApiDataSource {
+) : NewsApiDataSource {
 
     override suspend fun getTopHeadlinesNews() = requestUtils.executeRemoteCall {
         newsApi.get<NewsApiResponse>(TOP_HEADLINE_URL)

@@ -2,9 +2,9 @@ package com.bbcnewschallenge.core.ui.bases
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bbcnewschallenge.core.domain.interfaces.AnalyticScreen
 import com.bbcnewschallenge.core.domain.analytics.ErrorAnalyticEvent
 import com.bbcnewschallenge.core.domain.analytics.OpenScreenAnalyticEvent
+import com.bbcnewschallenge.core.domain.interfaces.AnalyticScreen
 import com.bbcnewschallenge.core.domain.usecases.SendAnalyticsUseCase
 import com.bbcnewschallenge.core.router.managers.NavigationManager
 import com.bbcnewschallenge.core.ui.interfaces.BaseUiState

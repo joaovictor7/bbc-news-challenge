@@ -13,7 +13,7 @@ internal class RemoteCallUtils @Inject constructor(
     private val networkProvider: NetworkProvider,
     private val buildConfigProvider: BuildConfigProvider,
     private val dispatcherProvider: DispatcherProvider
-)  {
+) {
 
     suspend fun <T> executeRemoteCall(onRemoteCall: suspend () -> T): T = when {
         !networkProvider.internetIsConnected -> throw NetworkThrowable()

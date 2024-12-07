@@ -3,8 +3,8 @@ package com.bbcnewschallenge.core.domain.usecases
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import com.bbcnewschallenge.common.providers.BuildConfigProvider
-import com.bbcnewschallenge.core.domain.interfaces.AnalyticEvent
 import com.bbcnewschallenge.core.domain.analytics.ErrorAnalyticEvent
+import com.bbcnewschallenge.core.domain.interfaces.AnalyticEvent
 import com.bbcnewschallenge.core.domain.repositories.AnalyticsRepository
 import java.time.LocalDateTime
 import javax.inject.Inject

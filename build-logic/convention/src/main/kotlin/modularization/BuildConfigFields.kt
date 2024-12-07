@@ -1,12 +1,12 @@
 package modularization
 
-import enums.BuildType
-import enums.Flavor
-import enums.FlavorDimension
 import com.android.build.api.dsl.ApplicationBuildType
 import com.android.build.api.dsl.ApplicationDefaultConfig
 import com.android.build.api.dsl.ApplicationProductFlavor
+import enums.BuildType
 import enums.File
+import enums.Flavor
+import enums.FlavorDimension
 import extensions.loadPropertiesFile
 import org.gradle.api.Project
 
