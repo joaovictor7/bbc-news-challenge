@@ -11,8 +11,6 @@ androidHilt = "2.53"
 androidXHilt = "1.2.0"
 composeBom = "2024.11.00"
 composeNavigation = "2.8.4"
-googleServices = "4.4.2"
-firebaseBom = "33.7.0"
 firebaseCrashlytics = "3.0.2"
 mockK = "1.13.13"
 ksp = "2.1.0-1.0.29"
@@ -62,10 +60,10 @@ androidx-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref 
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidXHilt" }
 
 # Firebase
-firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
-firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
-firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
-firebase-config = { group = "com.google.firebase", name = "firebase-config" }
+#firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+#firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+#firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+#firebase-config = { group = "com.google.firebase", name = "firebase-config" }
 
 # Junit 5
 junit5 = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
@@ -106,7 +104,5 @@ composeTest-test = { id = "com.bbcnewschallenge.test" }
 # Another plugins
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "androidHilt" }
-googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
-firebaseCrashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

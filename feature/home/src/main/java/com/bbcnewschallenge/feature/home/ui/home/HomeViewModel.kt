@@ -3,7 +3,6 @@ package com.bbcnewschallenge.feature.home.ui.home
 import com.bbcnewschallenge.core.designsystem.utils.getErrorAlertDialogParam
 import com.bbcnewschallenge.core.domain.models.ArticleModel
 import com.bbcnewschallenge.core.domain.usecases.GetTopHeadlinesUseCase
-import com.bbcnewschallenge.core.domain.usecases.SendAnalyticsUseCase
 import com.bbcnewschallenge.core.router.destinations.home.NewsDetailDestination
 import com.bbcnewschallenge.core.router.di.qualifiers.NavGraphQualifier
 import com.bbcnewschallenge.core.router.enums.NavGraph
@@ -18,14 +17,12 @@ import javax.inject.Inject
 internal class HomeViewModel @Inject constructor(
     private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase,
     private val biometricsProvider: BiometricsProvider,
-    override val sendAnalyticsUseCase: SendAnalyticsUseCase,
     @NavGraphQualifier(NavGraph.MAIN) override val navigationManager: NavigationManager
 ) : BaseViewModel<HomeUiState>(HomeScreenAnalytic, HomeUiState()), HomeCommandReceiver {
 
     override val commandReceiver = this
 
     override fun initUiState() {
-        openScreenAnalytic()
         checkBiometrics()
     }
 

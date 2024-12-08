@@ -1,6 +1,5 @@
 package com.bbcnewschallenge.feature.home.ui.newsdetail
 
-import com.bbcnewschallenge.core.domain.usecases.SendAnalyticsUseCase
 import com.bbcnewschallenge.core.router.destinations.home.NewsDetailDestination
 import com.bbcnewschallenge.core.router.di.qualifiers.NavGraphQualifier
 import com.bbcnewschallenge.core.router.enums.NavGraph
@@ -13,7 +12,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class NewsDetailViewModel @Inject constructor(
-    override val sendAnalyticsUseCase: SendAnalyticsUseCase,
     @NavGraphQualifier(NavGraph.MAIN) override val navigationManager: NavigationManager
 ) : BaseViewModel<NewsDetailUiState>(NewsDetailScreenAnalytic, NewsDetailUiState()),
     NewsDetailCommandReceiver {
@@ -21,7 +19,6 @@ internal class NewsDetailViewModel @Inject constructor(
     override val commandReceiver = this
 
     override fun initUiState() {
-        openScreenAnalytic()
         val destination = navigationManager.getParam<NewsDetailDestination>()
         updateUiState {
             it.copy(

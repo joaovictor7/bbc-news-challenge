@@ -48,11 +48,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.executeCommand(MainCommand.FetchRemoteConfig)
-    }
-
     private fun uiStateObserver() = lifecycleScope.launch {
         viewModel.uiState.flowWithLifecycle(lifecycle).collect { uiState ->
             setEdgeToEdge(uiState)

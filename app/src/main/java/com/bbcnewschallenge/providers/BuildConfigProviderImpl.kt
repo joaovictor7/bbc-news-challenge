@@ -4,7 +4,6 @@ import android.os.Build
 import com.bbcnewschallenge.BuildConfig
 import com.bbcnewschallenge.common.enums.BuildType.Companion.getBuildType
 import com.bbcnewschallenge.common.enums.Flavor.Companion.getFlavor
-import com.bbcnewschallenge.common.enums.FlavorDimension
 import com.bbcnewschallenge.common.enums.FlavorDimension.Companion.getDimensionFlavor
 import com.bbcnewschallenge.common.models.BuildConfigFieldsModel
 import com.bbcnewschallenge.common.models.BuildConfigModel

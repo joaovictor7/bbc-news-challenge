@@ -4,10 +4,6 @@ import com.bbcnewschallenge.core.data.datasources.local.AppThemeDataSource
 import com.bbcnewschallenge.core.data.datasources.local.AppThemeDataSourceImpl
 import com.bbcnewschallenge.core.data.datasources.local.PreferenceDataSource
 import com.bbcnewschallenge.core.data.datasources.local.PreferenceDataSourceImpl
-import com.bbcnewschallenge.core.data.datasources.remote.FirebaseAnalyticsDataSource
-import com.bbcnewschallenge.core.data.datasources.remote.FirebaseAnalyticsDataSourceImpl
-import com.bbcnewschallenge.core.data.datasources.remote.FirebaseRemoteConfigDataSource
-import com.bbcnewschallenge.core.data.datasources.remote.FirebaseRemoteConfigDataSourceImpl
 import com.bbcnewschallenge.core.data.datasources.remote.NewsApiDataSource
 import com.bbcnewschallenge.core.data.datasources.remote.NewsApiDataSourceImpl
 import com.bbcnewschallenge.core.data.datasources.remote.NewsApiFakeDataSourceImpl
@@ -25,16 +21,6 @@ import io.ktor.client.HttpClient
 @Module
 @InstallIn(SingletonComponent::class)
 internal abstract class DataSourceBindsModule {
-
-    @Binds
-    abstract fun firebaseAnalyticsDataSource(
-        firebaseAnalyticsDataSourceImpl: FirebaseAnalyticsDataSourceImpl
-    ): FirebaseAnalyticsDataSource
-
-    @Binds
-    abstract fun firebaseRemoteConfigsDataSource(
-        firebaseRemoteConfigDataSourceImpl: FirebaseRemoteConfigDataSourceImpl
-    ): FirebaseRemoteConfigDataSource
 
     @Binds
     abstract fun preferenceDataSource(

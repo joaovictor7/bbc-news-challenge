@@ -19,9 +19,6 @@ dependencies {
     implementation(libs.ktor.client.serialization)
     implementation(libs.ktor.client.logging)
     implementation(libs.androidx.work.manager)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.crashlytics)
-    implementation(libs.firebase.config)
     implementation(libs.slf4j.api)
     ksp(libs.androidx.hilt.compiler)
 }

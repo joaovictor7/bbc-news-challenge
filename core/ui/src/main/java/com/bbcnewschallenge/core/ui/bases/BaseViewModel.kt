@@ -2,10 +2,7 @@ package com.bbcnewschallenge.core.ui.bases
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bbcnewschallenge.core.domain.analytics.ErrorAnalyticEvent
-import com.bbcnewschallenge.core.domain.analytics.OpenScreenAnalyticEvent
 import com.bbcnewschallenge.core.domain.interfaces.AnalyticScreen
-import com.bbcnewschallenge.core.domain.usecases.SendAnalyticsUseCase
 import com.bbcnewschallenge.core.router.managers.NavigationManager
 import com.bbcnewschallenge.core.ui.interfaces.BaseUiState
 import kotlinx.coroutines.CoroutineScope
@@ -23,7 +20,6 @@ abstract class BaseViewModel<UiState : BaseUiState>(
     uiState: UiState
 ) : ViewModel() {
 
-    abstract val sendAnalyticsUseCase: SendAnalyticsUseCase
     abstract val navigationManager: NavigationManager
 
     private val _uiState = MutableStateFlow(uiState)
@@ -39,12 +35,6 @@ abstract class BaseViewModel<UiState : BaseUiState>(
 
     protected fun updateUiState(onNewUiState: (UiState) -> UiState) {
         _uiState.update(onNewUiState)
-    }
-
-    protected fun openScreenAnalytic() {
-        runAsyncTask {
-            sendAnalyticsUseCase(OpenScreenAnalyticEvent(analyticScreen))
-        }
     }
 
     protected fun <T> runFlowTask(
@@ -86,7 +76,6 @@ abstract class BaseViewModel<UiState : BaseUiState>(
         onTask: suspend () -> Unit
     ) {
         runCatching { onTask() }.onFailure {
-            sendAnalyticsUseCase(ErrorAnalyticEvent(it, analyticScreen))
             onError?.invoke(it)
         }
     }

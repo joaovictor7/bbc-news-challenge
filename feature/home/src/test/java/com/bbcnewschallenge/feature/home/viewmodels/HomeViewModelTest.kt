@@ -2,7 +2,6 @@ package com.bbcnewschallenge.feature.home.viewmodels
 
 import com.bbcnewschallenge.core.domain.models.ArticleModel
 import com.bbcnewschallenge.core.domain.usecases.GetTopHeadlinesUseCase
-import com.bbcnewschallenge.core.domain.usecases.SendAnalyticsUseCase
 import com.bbcnewschallenge.core.router.destinations.home.NewsDetailDestination
 import com.bbcnewschallenge.core.router.managers.NavigationManager
 import com.bbcnewschallenge.core.security.providers.BiometricsProvider
@@ -22,14 +21,12 @@ import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
 
 private class HomeViewModelTest : CoroutinesTest {
-
     private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase = mockk {
         coEvery { this@mockk.invoke() } returns articles
     }
     private val biometricsProvider: BiometricsProvider = mockk {
         every { isBiometricsAvailable } returns false
     }
-    private val sendAnalyticsUseCase: SendAnalyticsUseCase = mockk(relaxed = true)
     private val navigationManager: NavigationManager = mockk(relaxed = true)
 
     private lateinit var viewModel: HomeViewModel
@@ -126,7 +123,6 @@ private class HomeViewModelTest : CoroutinesTest {
         HomeViewModel(
             getTopHeadlinesUseCase = getTopHeadlinesUseCase,
             biometricsProvider = biometricsProvider,
-            sendAnalyticsUseCase = sendAnalyticsUseCase,
             navigationManager = navigationManager
         )
 

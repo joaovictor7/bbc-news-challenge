@@ -2,8 +2,6 @@ import appconfig.AppConfig
 import com.android.build.api.dsl.ApkSigningConfig
 import com.android.build.api.dsl.ApplicationExtension
 import enums.Signing
-import extensions.getLibrary
-import extensions.implementation
 import modularization.configureAndroid
 import modularization.setBuildTypes
 import modularization.setDefaultBuildConfigFields
@@ -12,7 +10,6 @@ import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
 import java.util.Properties
 
 internal class ApplicationConventionPlugin : Plugin<Project> {
@@ -21,8 +18,6 @@ internal class ApplicationConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.application")
                 apply("com.google.dagger.hilt.android")
-                apply("com.google.gms.google-services")
-                apply("com.google.firebase.crashlytics")
             }
             extensions.configure<ApplicationExtension> {
                 configureAndroid(this)
@@ -50,10 +45,6 @@ internal class ApplicationConventionPlugin : Plugin<Project> {
                 }
                 setBuildTypes(true)
                 setFlavors(true)
-            }
-            dependencies {
-                implementation(getLibrary("firebase.analytics"))
-                implementation(getLibrary("firebase.crashlytics"))
             }
         }
     }
