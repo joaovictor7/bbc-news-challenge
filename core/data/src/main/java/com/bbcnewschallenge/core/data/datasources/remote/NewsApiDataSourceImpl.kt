@@ -13,10 +13,10 @@ internal class NewsApiDataSourceImpl(
 ) : NewsApiDataSource {
 
     override suspend fun getTopHeadlinesNews() = requestUtils.executeRemoteCall {
-        newsApi.get<NewsApiResponse>(TOP_HEADLINE_URL)
+        newsApi.get<NewsApiResponse>(TOP_HEADLINE_PATH)
     }
 
     private companion object {
-        const val TOP_HEADLINE_URL = "top-headlines"
+        const val TOP_HEADLINE_PATH = "top-headlines"
     }
 }

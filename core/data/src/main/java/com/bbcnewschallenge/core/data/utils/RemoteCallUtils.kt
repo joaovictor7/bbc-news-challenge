@@ -1,6 +1,7 @@
 package com.bbcnewschallenge.core.data.utils
 
 import com.bbcnewschallenge.common.enums.Flavor
+import com.bbcnewschallenge.common.enums.FlavorDimension
 import com.bbcnewschallenge.common.providers.BuildConfigProvider
 import com.bbcnewschallenge.common.providers.DispatcherProvider
 import com.bbcnewschallenge.core.domain.errors.HttpError
@@ -25,7 +26,7 @@ internal class RemoteCallUtils @Inject constructor(
 
     private suspend fun <T> call(onRemoteCall: suspend () -> T) =
         withContext(dispatcherProvider.io) {
-            if (buildConfigProvider.get.flavor == Flavor.DEVELOP) {
+            if (buildConfigProvider.get.flavorDimension == FlavorDimension.DEVELOP) {
                 delay(FAKE_CALL_DELAY)
             }
             onRemoteCall()

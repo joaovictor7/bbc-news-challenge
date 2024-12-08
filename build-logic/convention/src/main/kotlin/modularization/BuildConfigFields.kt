@@ -36,5 +36,7 @@ internal fun ApplicationProductFlavor.setBuildConfigFields(
         Flavor.PRODUCTION -> {}
         Flavor.DEVELOP -> {}
         Flavor.STAGING -> {}
+        Flavor.BBC_NEWS -> {}
+        Flavor.BBC_SPORT -> {}
     }
 }

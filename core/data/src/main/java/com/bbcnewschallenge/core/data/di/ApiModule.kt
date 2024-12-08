@@ -14,8 +14,7 @@ import io.ktor.client.HttpClient
 @InstallIn(SingletonComponent::class)
 internal object ApiModule {
     private const val API_KEY = "x-api-key"
-    private const val COUNTRY = "country"
-    private const val US_COUNTRY = "us"
+    private const val SOURCE = "sources"
 
     @Provides
     @ApiQualifier(NetworkApi.NEWS_API)
@@ -25,7 +24,7 @@ internal object ApiModule {
     ): HttpClient = httpClient.setHost(
         host = buildConfigProvider.get.buildConfigFieldsModel.newsApiHost,
         networkApi = NetworkApi.NEWS_API,
-        parameters = mapOf(COUNTRY to US_COUNTRY),
+        parameters = mapOf(SOURCE to buildConfigProvider.get.flavor.source),
         headers = mapOf(API_KEY to buildConfigProvider.get.buildConfigFieldsModel.newsApiKey)
     )
 }

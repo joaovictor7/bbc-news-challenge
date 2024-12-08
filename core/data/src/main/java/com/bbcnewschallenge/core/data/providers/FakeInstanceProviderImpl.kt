@@ -1,6 +1,7 @@
 package com.bbcnewschallenge.core.data.providers
 
 import com.bbcnewschallenge.common.enums.Flavor
+import com.bbcnewschallenge.common.enums.FlavorDimension
 import com.bbcnewschallenge.common.providers.BuildConfigProvider
 import javax.inject.Inject
 
@@ -11,7 +12,7 @@ internal class FakeInstanceProviderImpl @Inject constructor(
     override fun <Instance> getInstance(
         instance: Instance,
         fakeInstance: Instance
-    ) = if (buildConfigProvider.get.flavor == Flavor.DEVELOP) {
+    ) = if (buildConfigProvider.get.flavorDimension == FlavorDimension.DEVELOP) {
         fakeInstance
     } else {
         instance

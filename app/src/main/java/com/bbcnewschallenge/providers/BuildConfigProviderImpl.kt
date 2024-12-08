@@ -4,6 +4,8 @@ import android.os.Build
 import com.bbcnewschallenge.BuildConfig
 import com.bbcnewschallenge.common.enums.BuildType.Companion.getBuildType
 import com.bbcnewschallenge.common.enums.Flavor.Companion.getFlavor
+import com.bbcnewschallenge.common.enums.FlavorDimension
+import com.bbcnewschallenge.common.enums.FlavorDimension.Companion.getDimensionFlavor
 import com.bbcnewschallenge.common.models.BuildConfigFieldsModel
 import com.bbcnewschallenge.common.models.BuildConfigModel
 import com.bbcnewschallenge.common.providers.BuildConfigProvider
@@ -15,7 +17,8 @@ internal class BuildConfigProviderImpl @Inject constructor() : BuildConfigProvid
         versionName = BuildConfig.VERSION_NAME,
         versionCode = BuildConfig.VERSION_CODE,
         buildType = BuildConfig.BUILD_TYPE.getBuildType(),
-        flavor = BuildConfig.FLAVOR.getFlavor(),
+        flavorDimension = BuildConfig.FLAVOR_environment.getDimensionFlavor(),
+        flavor = BuildConfig.FLAVOR_source.getFlavor(),
         androidSdkVersion = Build.VERSION.SDK_INT,
         buildConfigFieldsModel = BuildConfigFieldsModel(
             newsApiHost = BuildConfig.NEWS_API_API_HOST,
