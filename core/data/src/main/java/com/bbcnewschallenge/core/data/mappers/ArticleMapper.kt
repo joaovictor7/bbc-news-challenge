@@ -9,7 +9,7 @@ import javax.inject.Inject
 internal class ArticleMapper @Inject constructor() {
     operator fun invoke(response: NewsApiResponse) = response.articles.map {
         ArticleModel(
-            providerName = it.source.name,
+            provider = it.source.name,
             title = it.title,
             description = it.description,
             urlToImage = it.urlToImage,

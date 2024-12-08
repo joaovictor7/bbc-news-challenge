@@ -8,4 +8,10 @@ internal sealed interface HomeCommand : Command<HomeCommandReceiver> {
             commandReceiver.navigateToHome2()
         }
     }
+
+    data object Refresh : HomeCommand {
+        override fun execute(commandReceiver: HomeCommandReceiver) {
+            commandReceiver.refresh()
+        }
+    }
 }

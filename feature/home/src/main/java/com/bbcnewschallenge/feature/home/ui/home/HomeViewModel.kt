@@ -1,5 +1,6 @@
 package com.bbcnewschallenge.feature.home.ui.home
 
+import com.bbcnewschallenge.core.designsystem.utils.getErrorAlertDialogParam
 import com.bbcnewschallenge.core.domain.usecases.GetTopHeadlinesUseCase
 import com.bbcnewschallenge.core.domain.usecases.SendAnalyticsUseCase
 import com.bbcnewschallenge.core.router.di.qualifiers.NavGraphQualifier
@@ -21,11 +22,34 @@ internal class HomeViewModel @Inject constructor(
 
     override fun initUiState() {
         openScreenAnalytic()
-        runAsyncTask {
-            val e = getTopHeadlinesUseCase()
-        }
+        getArticles()
     }
 
     override fun navigateToHome2() {
+    }
+
+    override fun refresh() {
+        getArticles()
+    }
+
+    private fun getArticles() = runAsyncTask(
+        onError = ::handleRequestError,
+        onStart = { updateUiState { it.setIsLoading(true) } },
+        onCompletion = { updateUiState { it.setIsLoading(false) } },
+    ) {
+        val articles = getTopHeadlinesUseCase()
+        updateUiState {
+            it.setArticles(articles)
+        }
+    }
+
+    private fun handleRequestError(error: Throwable) {
+        updateUiState { uiState ->
+            uiState.setAlertDialogParam(
+                getErrorAlertDialogParam(error) {
+                    updateUiState { it.setAlertDialogParam(null) }
+                }
+            ).setArticles(emptyList())
+        }
     }
 }

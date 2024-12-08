@@ -15,9 +15,9 @@ internal class RemoteCallUtils @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) {
 
-    suspend fun <T> executeRemoteCall(onRemoteCall: suspend () -> T): T = when {
-        !networkProvider.internetIsConnected -> throw NetworkThrowable()
-        else -> call(onRemoteCall)
+    suspend fun <T> executeRemoteCall(onRemoteCall: suspend () -> T): T {
+        handleErrors()
+        return call(onRemoteCall)
     }
 
     private suspend fun <T> call(onRemoteCall: suspend () -> T) =
@@ -27,6 +27,14 @@ internal class RemoteCallUtils @Inject constructor(
             }
             onRemoteCall()
         }
+
+    private suspend fun handleErrors() = when {
+        !networkProvider.internetIsConnected -> NetworkThrowable()
+        else -> null
+    }?.let {
+        delay(10)
+        throw it
+    }
 
     private companion object {
         const val FAKE_CALL_DELAY = 2000L
