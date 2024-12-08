@@ -8,6 +8,7 @@ import com.bbcnewschallenge.core.router.destinations.home.NewsDetailDestination
 import com.bbcnewschallenge.core.router.di.qualifiers.NavGraphQualifier
 import com.bbcnewschallenge.core.router.enums.NavGraph
 import com.bbcnewschallenge.core.router.managers.NavigationManager
+import com.bbcnewschallenge.core.security.providers.BiometricsProvider
 import com.bbcnewschallenge.core.ui.bases.BaseViewModel
 import com.bbcnewschallenge.feature.home.analytics.home.HomeScreenAnalytic
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class HomeViewModel @Inject constructor(
     private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase,
+    private val biometricsProvider: BiometricsProvider,
     override val sendAnalyticsUseCase: SendAnalyticsUseCase,
     @NavGraphQualifier(NavGraph.MAIN) override val navigationManager: NavigationManager
 ) : BaseViewModel<HomeUiState>(HomeScreenAnalytic, HomeUiState()), HomeCommandReceiver {
@@ -24,7 +26,16 @@ internal class HomeViewModel @Inject constructor(
 
     override fun initUiState() {
         openScreenAnalytic()
+        checkBiometrics()
+    }
+
+    override fun biometrySuccess() {
+        updateUiState { it.setShowBiometricPrompt(false) }
         getArticles()
+    }
+
+    override fun biometryError(message: String) {
+        updateUiState { it.setFinishApp(true) }
     }
 
     override fun navigateToDetail(article: ArticleModel) {
@@ -40,6 +51,14 @@ internal class HomeViewModel @Inject constructor(
 
     override fun refresh() {
         getArticles()
+    }
+
+    private fun checkBiometrics() {
+        if (biometricsProvider.isBiometricsAvailable) {
+            updateUiState { it.copy(showBiometricPrompt = true) }
+        } else {
+            getArticles()
+        }
     }
 
     private fun getArticles() = runAsyncTask(

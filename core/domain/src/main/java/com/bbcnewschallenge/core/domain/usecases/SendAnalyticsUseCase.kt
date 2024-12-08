@@ -14,12 +14,12 @@ class SendAnalyticsUseCase @Inject constructor(
     private val buildConfigProvider: BuildConfigProvider
 ) {
 
-    suspend operator fun invoke(event: AnalyticEvent) {
+    operator fun invoke(event: AnalyticEvent) {
         val bundle = createBundle(event)
         analyticsRepository.logEvent(event.tag, bundle)
     }
 
-    suspend operator fun invoke(event: ErrorAnalyticEvent) {
+    operator fun invoke(event: ErrorAnalyticEvent) {
         val bundle = createBundle(event)
         analyticsRepository.logNonFatalError(event.tag, event.throwable, bundle)
     }

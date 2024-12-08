@@ -9,6 +9,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -17,6 +18,7 @@ internal object ApiModule {
     private const val SOURCE = "sources"
 
     @Provides
+    @Singleton
     @ApiQualifier(NetworkApi.NEWS_API)
     fun newsApi(
         httpClient: HttpClient,

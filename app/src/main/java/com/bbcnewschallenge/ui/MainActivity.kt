@@ -1,12 +1,12 @@
 package com.bbcnewschallenge.ui
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -22,26 +22,30 @@ import kotlinx.coroutines.launch
 import kotlin.reflect.KClass
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSplashScreen()
-        setEdgeToEdge()
-        setContent {
-            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-            BbcNewsChallengeTheme(
-                dynamicColor = uiState.appTheme.dynamicColors,
-                theme = uiState.appTheme.theme
-            ) {
-                Navigation(
-                    firstScreenDestination = HomeDestination::class,
-                    onExecuteCommand = viewModel::executeCommand
-                )
+        uiStateObserver()
+        setContentView(
+            ComposeView(this).apply {
+                setContent {
+                    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+                    BbcNewsChallengeTheme(
+                        dynamicColor = uiState.appTheme.dynamicColors,
+                        theme = uiState.appTheme.theme
+                    ) {
+                        Navigation(
+                            firstScreenDestination = HomeDestination::class,
+                            onExecuteCommand = viewModel::executeCommand
+                        )
+                    }
+                }
             }
-        }
+        )
     }
 
     override fun onResume() {
@@ -49,9 +53,9 @@ class MainActivity : ComponentActivity() {
         viewModel.executeCommand(MainCommand.FetchRemoteConfig)
     }
 
-    private fun setEdgeToEdge() = lifecycleScope.launch {
+    private fun uiStateObserver() = lifecycleScope.launch {
         viewModel.uiState.flowWithLifecycle(lifecycle).collect { uiState ->
-            enableEdgeToEdge(uiState.statusBarStyle, uiState.navigationBarStyle)
+            setEdgeToEdge(uiState)
         }
     }
 
@@ -59,6 +63,10 @@ class MainActivity : ComponentActivity() {
         installSplashScreen().setKeepOnScreenCondition {
             viewModel.uiState.value.showSplashScreen
         }
+    }
+
+    private fun setEdgeToEdge(uiState: MainUiState) {
+        enableEdgeToEdge(uiState.statusBarStyle, uiState.navigationBarStyle)
     }
 }
 

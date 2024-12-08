@@ -22,4 +22,5 @@ dependencies {
     implementation(projects.feature.home)
     implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.splash.screen)
+    implementation(libs.androidx.appcompat)
 }

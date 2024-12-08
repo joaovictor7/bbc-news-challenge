@@ -26,6 +26,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bbcnewschallenge.core.designsystem.components.alertdialogs.DefaultAlertDialog
@@ -33,10 +34,12 @@ import com.bbcnewschallenge.core.designsystem.components.asyncimage.AsyncImage
 import com.bbcnewschallenge.core.designsystem.constants.screenMargin
 import com.bbcnewschallenge.core.designsystem.constants.topScreenMarginList
 import com.bbcnewschallenge.core.designsystem.dimensions.spacings
+import com.bbcnewschallenge.core.designsystem.extensions.asActivity
 import com.bbcnewschallenge.core.designsystem.extensions.horizontalScreenMargin
 import com.bbcnewschallenge.core.designsystem.params.alertdialogs.DefaultAlertDialogParam
 import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 import com.bbcnewschallenge.core.domain.models.ArticleModel
+import com.bbcnewschallenge.core.security.utils.showBiometricPrompt
 import com.bbcnewschallenge.core.ui.interfaces.Command
 import com.bbcnewschallenge.core.ui.interfaces.Screen
 import java.time.LocalDateTime
@@ -49,10 +52,9 @@ internal object HomeScreen : Screen<HomeUiState, HomeCommandReceiver> {
         uiState: HomeUiState,
         onExecuteCommand: (Command<HomeCommandReceiver>) -> Unit
     ) {
+        LaunchedHandler(uiState = uiState, onExecuteCommand = onExecuteCommand)
+        if (!uiState.showScreen) return
         val pullToRefreshState = rememberPullToRefreshState()
-        LaunchedEffect(uiState.isLoading) {
-            if (!uiState.isLoading) pullToRefreshState.animateToHidden()
-        }
         PullToRefreshBox(
             modifier = Modifier.fillMaxSize(),
             state = pullToRefreshState,
@@ -73,7 +75,7 @@ internal object HomeScreen : Screen<HomeUiState, HomeCommandReceiver> {
                     .fillMaxSize()
                     .horizontalScreenMargin(),
                 contentPadding = topScreenMarginList,
-                verticalArrangement = Arrangement.spacedBy(spacings.twelve)
+                verticalArrangement = Arrangement.spacedBy(spacings.twentyEight)
             ) {
                 items(uiState.articles) {
                     NewsCard(articleModel = it, onExecuteCommand = onExecuteCommand)
@@ -127,6 +129,25 @@ private fun AlertDialogHandler(defaultAlertDialogParam: DefaultAlertDialogParam?
     defaultAlertDialogParam?.let {
         DefaultAlertDialog(param = it)
     }
+
+@Composable
+private fun LaunchedHandler(
+    uiState: HomeUiState,
+    onExecuteCommand: (Command<HomeCommandReceiver>) -> Unit
+) {
+    val context = LocalContext.current
+    LaunchedEffect(uiState.showBiometricPrompt) {
+        if (!uiState.showBiometricPrompt) return@LaunchedEffect
+        showBiometricPrompt(
+            context = context,
+            onSuccess = { onExecuteCommand(HomeCommand.BiometrySuccess) },
+            onError = { onExecuteCommand(HomeCommand.BiometryError(it)) }
+        )
+    }
+    LaunchedEffect(uiState.finishApp) {
+        if (uiState.finishApp) context.asActivity?.finish()
+    }
+}
 
 @Preview
 @Composable

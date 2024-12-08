@@ -1,5 +1,7 @@
 package com.bbcnewschallenge.core.security.di
 
+import com.bbcnewschallenge.core.security.providers.BiometricsProvider
+import com.bbcnewschallenge.core.security.providers.BiometricsProviderImpl
 import com.bbcnewschallenge.core.security.providers.CipherProvider
 import com.bbcnewschallenge.core.security.providers.CipherProviderImpl
 import com.bbcnewschallenge.core.security.providers.SqliteCipherProvider
@@ -22,4 +24,9 @@ internal abstract class ProviderModule {
     abstract fun sqlCipherProvider(
         sqliteCipherProviderImpl: SqliteCipherProviderImpl
     ): SqliteCipherProvider
+
+    @Binds
+    abstract fun biometricsProvider(
+        biometricsProviderImpl: BiometricsProviderImpl
+    ): BiometricsProvider
 }
