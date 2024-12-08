@@ -1,11 +1,11 @@
 package com.bbcnewschallenge.core.data.di
 
-import com.bbcnewschallenge.core.domain.throwables.network.UnauthorizedRequestThrowable
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.HttpResponseValidator
@@ -21,6 +21,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.io.IOException
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
@@ -37,16 +38,16 @@ internal object KtorModule {
         defaultRequest {
             header(HttpHeaders.ContentType, ContentType.Application.Json)
         }
-        HttpResponseValidator {
-            handleResponseExceptionWithRequest { exception, _ ->
-                val clientException = exception as? ClientRequestException
-                when (clientException?.response?.status) {
-                    HttpStatusCode.Unauthorized -> throw UnauthorizedRequestThrowable(
-                        message = clientException.message
-                    )
-                }
-            }
-        }
+//        HttpResponseValidator {
+//            handleResponseExceptionWithRequest { exception, _ ->
+//                val clientException = exception as? ClientRequestException
+//                when (clientException?.response?.status) {
+//                    HttpStatusCode.Unauthorized -> throw UnauthorizedRequestThrowable(
+//                        message = clientException.message
+//                    )
+//                }
+//            }
+//        }
         install(HttpTimeout) {
             requestTimeoutMillis = TIMEOUT
         }

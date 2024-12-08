@@ -1,4 +1,4 @@
-package com.bbcnewschallenge.core.data.providers
+package com.bbcnewschallenge.common.providers
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -2,6 +2,8 @@ package com.bbcnewschallenge.common.di
 
 import com.bbcnewschallenge.common.providers.DispatcherProvider
 import com.bbcnewschallenge.common.providers.DispatcherProviderImpl
+import com.bbcnewschallenge.common.providers.NetworkProvider
+import com.bbcnewschallenge.common.providers.NetworkProviderImpl
 import com.bbcnewschallenge.common.providers.StringResourceProvider
 import com.bbcnewschallenge.common.providers.StringResourceProviderImpl
 import dagger.Binds
@@ -22,4 +24,7 @@ internal abstract class ProviderModule {
     abstract fun stringResourceProvider(
         stringResourceProviderImpl: StringResourceProviderImpl
     ): StringResourceProvider
+
+    @Binds
+    abstract fun networkProvider(networkProviderImpl: NetworkProviderImpl): NetworkProvider
 }

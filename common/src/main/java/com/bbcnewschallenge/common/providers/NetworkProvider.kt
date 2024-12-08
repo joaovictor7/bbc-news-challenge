@@ -1,4 +1,4 @@
-package com.bbcnewschallenge.core.data.providers
+package com.bbcnewschallenge.common.providers
 
 interface NetworkProvider {
     val internetIsConnected: Boolean

@@ -2,8 +2,6 @@ package com.bbcnewschallenge.core.data.di
 
 import com.bbcnewschallenge.core.data.providers.FakeInstanceProvider
 import com.bbcnewschallenge.core.data.providers.FakeInstanceProviderImpl
-import com.bbcnewschallenge.core.data.providers.NetworkProvider
-import com.bbcnewschallenge.core.data.providers.NetworkProviderImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,7 +15,4 @@ internal abstract class ProviderModule {
     abstract fun fakeInstanceProvider(
         fakeInstanceProviderImpl: FakeInstanceProviderImpl
     ): FakeInstanceProvider
-
-    @Binds
-    abstract fun networkProvider(networkProviderImpl: NetworkProviderImpl): NetworkProvider
 }

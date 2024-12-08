@@ -37,9 +37,6 @@ class MainActivity : ComponentActivity() {
                 dynamicColor = uiState.appTheme.dynamicColors,
                 theme = uiState.appTheme.theme
             ) {
-                uiState.defaultAlertDialogParam?.let {
-                    DefaultAlertDialog(param = it)
-                }
                 Navigation(
                     firstScreenDestination = HomeDestination::class,
                     onExecuteCommand = viewModel::executeCommand
