@@ -31,12 +31,4 @@ internal fun ApplicationProductFlavor.setBuildConfigFields(
     project: Project,
     dimension: FlavorDimension,
     flavor: Flavor
-) = with(project) {
-    when (flavor) {
-        Flavor.PRODUCTION -> {}
-        Flavor.DEVELOP -> {}
-        Flavor.STAGING -> {}
-        Flavor.BBC_NEWS -> {}
-        Flavor.BBC_SPORT -> {}
-    }
-}
+) = with(project) { }

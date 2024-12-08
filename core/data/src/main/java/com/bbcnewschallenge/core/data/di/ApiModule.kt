@@ -1,5 +1,6 @@
 package com.bbcnewschallenge.core.data.di
 
+import com.bbcnewschallenge.common.extensions.source
 import com.bbcnewschallenge.common.providers.BuildConfigProvider
 import com.bbcnewschallenge.core.data.di.qualifiers.ApiQualifier
 import com.bbcnewschallenge.core.data.enums.NetworkApi
@@ -15,7 +16,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object ApiModule {
     private const val API_KEY = "x-api-key"
-    private const val SOURCE = "sources"
 
     @Provides
     @Singleton
@@ -26,7 +26,7 @@ internal object ApiModule {
     ): HttpClient = httpClient.setHost(
         host = buildConfigProvider.get.buildConfigFieldsModel.newsApiHost,
         networkApi = NetworkApi.NEWS_API,
-        parameters = mapOf(SOURCE to buildConfigProvider.get.flavor.source),
+        parameters = mapOf(buildConfigProvider.get.flavor.source),
         headers = mapOf(API_KEY to buildConfigProvider.get.buildConfigFieldsModel.newsApiKey)
     )
 }
