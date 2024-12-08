@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.bbcnewschallenge.core.designsystem.extensions.opacity
-import com.bbcnewschallenge.core.designsystem.theme.ComposeTestTheme
+import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 
 @Composable
 fun OutlinedButton(
@@ -37,7 +37,7 @@ fun OutlinedButton(
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    BbcNewsChallengeTheme {
         OutlinedButton(text = "Label") { }
     }
 }

@@ -14,7 +14,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.bbcnewschallenge.core.designsystem.R
 import com.bbcnewschallenge.core.designsystem.dimensions.spacings
-import com.bbcnewschallenge.core.designsystem.theme.ComposeTestTheme
+import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 
 @Composable
 fun DataLabel(
@@ -50,7 +50,7 @@ fun DataLabel(
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    BbcNewsChallengeTheme {
         DataLabel(
             labelTitleId = R.string.global_word_close,
             labelText = "teste"

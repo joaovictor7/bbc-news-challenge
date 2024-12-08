@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.bbcnewschallenge.core.designsystem.components.buttons.Button
 import com.bbcnewschallenge.core.designsystem.params.alertdialogs.ButtonAlertDialogParam
 import com.bbcnewschallenge.core.designsystem.params.alertdialogs.DefaultAlertDialogParam
-import com.bbcnewschallenge.core.designsystem.theme.ComposeTestTheme
+import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 
 @Composable
 fun DefaultAlertDialog(param: DefaultAlertDialogParam) {
@@ -40,7 +40,7 @@ private fun button(buttonParam: ButtonAlertDialogParam) = @Composable {
 @Composable
 @Preview
 private fun Preview() {
-    ComposeTestTheme {
+    BbcNewsChallengeTheme {
         DefaultAlertDialog(param = DefaultAlertDialogParam.getNetworkAlertDialogParam { })
     }
 }

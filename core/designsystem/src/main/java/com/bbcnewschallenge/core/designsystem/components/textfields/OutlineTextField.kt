@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.bbcnewschallenge.core.designsystem.enums.textfields.TextFieldIcons
 import com.bbcnewschallenge.core.designsystem.extensions.opacity
 import com.bbcnewschallenge.core.designsystem.params.textfields.TextFieldTrailingIconParam
-import com.bbcnewschallenge.core.designsystem.theme.ComposeTestTheme
+import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 import com.bbcnewschallenge.core.designsystem.utils.textfields.createIcon
 import com.bbcnewschallenge.core.designsystem.utils.textfields.textFieldHelpedText
 import com.bbcnewschallenge.core.designsystem.utils.textfields.trailingIcon
@@ -78,7 +78,7 @@ fun OutlinedTextField(
 @Composable
 @Preview
 private fun Preview() {
-    ComposeTestTheme {
+    BbcNewsChallengeTheme {
         val textValue by rememberSaveable { mutableStateOf("teste") }
         OutlinedTextField(
             labelText = "Label",

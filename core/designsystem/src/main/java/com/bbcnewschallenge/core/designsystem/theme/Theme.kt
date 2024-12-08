@@ -13,7 +13,7 @@ import com.bbcnewschallenge.core.designsystem.extensions.isDarkMode
 import com.bbcnewschallenge.core.domain.enums.Theme
 
 @Composable
-fun ComposeTestTheme(
+fun BbcNewsChallengeTheme(
     theme: Theme = Theme.AUTO,
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit

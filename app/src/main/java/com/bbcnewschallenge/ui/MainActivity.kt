@@ -13,8 +13,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.bbcnewschallenge.core.designsystem.components.alertdialogs.DefaultAlertDialog
-import com.bbcnewschallenge.core.designsystem.theme.ComposeTestTheme
+import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 import com.bbcnewschallenge.core.router.destinations.home.HomeDestination
 import com.bbcnewschallenge.core.ui.interfaces.Command
 import com.bbcnewschallenge.feature.home.navigation.homeNavGraph
@@ -33,7 +32,7 @@ class MainActivity : ComponentActivity() {
         setEdgeToEdge()
         setContent {
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-            ComposeTestTheme(
+            BbcNewsChallengeTheme(
                 dynamicColor = uiState.appTheme.dynamicColors,
                 theme = uiState.appTheme.theme
             ) {

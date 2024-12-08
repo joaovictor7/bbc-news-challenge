@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.bbcnewschallenge.core.designsystem.theme.ComposeTestTheme
+import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 
 @Composable
 fun ElevatedButton(
@@ -31,7 +31,7 @@ fun ElevatedButton(
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    BbcNewsChallengeTheme {
         ElevatedButton(text = "Label") { }
     }
 }

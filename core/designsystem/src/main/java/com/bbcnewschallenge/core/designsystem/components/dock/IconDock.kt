@@ -38,7 +38,7 @@ import com.bbcnewschallenge.core.designsystem.dimensions.components
 import com.bbcnewschallenge.core.designsystem.dimensions.spacings
 import com.bbcnewschallenge.core.designsystem.extensions.opacity
 import com.bbcnewschallenge.core.designsystem.params.dock.IconDockParam
-import com.bbcnewschallenge.core.designsystem.theme.ComposeTestTheme
+import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 
 /**
  * @param modifier set [height] is mandatory for correctly component show
@@ -136,7 +136,7 @@ private fun Int.convertToDp(density: Density) = with(density) { this@convertToDp
 @Composable
 @PreviewLightDark
 private fun Preview() {
-    ComposeTestTheme {
+    BbcNewsChallengeTheme {
         var selectedIndex by remember { mutableIntStateOf(2) }
         Box(modifier = Modifier.background(color = Color.Red)) {
             IconDock(

@@ -35,7 +35,7 @@ import com.bbcnewschallenge.core.designsystem.constants.topScreenMarginList
 import com.bbcnewschallenge.core.designsystem.dimensions.spacings
 import com.bbcnewschallenge.core.designsystem.extensions.horizontalScreenMargin
 import com.bbcnewschallenge.core.designsystem.params.alertdialogs.DefaultAlertDialogParam
-import com.bbcnewschallenge.core.designsystem.theme.ComposeTestTheme
+import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 import com.bbcnewschallenge.core.domain.models.ArticleModel
 import com.bbcnewschallenge.core.ui.interfaces.Command
 import com.bbcnewschallenge.core.ui.interfaces.Screen
@@ -92,7 +92,7 @@ private fun NewsCard(
     articleModel: ArticleModel,
     onExecuteCommand: (Command<HomeCommandReceiver>) -> Unit
 ) {
-    ElevatedCard() {
+    ElevatedCard(onClick = { onExecuteCommand(HomeCommand.NavigateToDetail(articleModel)) }) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
@@ -131,7 +131,7 @@ private fun AlertDialogHandler(defaultAlertDialogParam: DefaultAlertDialogParam?
 @Preview
 @Composable
 private fun Preview() {
-    ComposeTestTheme {
+    BbcNewsChallengeTheme {
         HomeScreen(
             uiState = HomeUiState(
                 articles = listOf(

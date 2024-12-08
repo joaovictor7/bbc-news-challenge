@@ -32,19 +32,6 @@ internal object ViewModelManagerModule {
         dispatcherProvider = dispatcherProvider,
         savedStateHandle = savedStateHandle
     )
-
-    @Provides
-    @NavGraphQualifier(NavGraph.ROOT)
-    fun navigationRootManager(
-        navControllerManager: NavControllerManager,
-        savedStateHandle: SavedStateHandle,
-        dispatcherProvider: DispatcherProvider
-    ): NavigationManager = NavigationManagerImpl(
-        navControllerManager = navControllerManager,
-        navGraph = NavGraph.ROOT,
-        dispatcherProvider = dispatcherProvider,
-        savedStateHandle = savedStateHandle
-    )
 }
 
 @Module

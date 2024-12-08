@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.bbcnewschallenge.core.designsystem.params.switches.SwitchType
-import com.bbcnewschallenge.core.designsystem.theme.ComposeTestTheme
+import com.bbcnewschallenge.core.designsystem.theme.BbcNewsChallengeTheme
 
 @Composable
 fun ThumbSwitch(
@@ -50,7 +50,7 @@ private fun getThumbContent(type: SwitchType?, checked: Boolean): @Composable ((
 @Preview
 private fun Preview() {
     var checked by remember { mutableStateOf(false) }
-    ComposeTestTheme {
+    BbcNewsChallengeTheme {
         ThumbSwitch(
             checked = checked,
             type = SwitchType.CHECK

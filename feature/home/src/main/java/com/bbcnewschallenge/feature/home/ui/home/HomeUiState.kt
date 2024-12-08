@@ -9,9 +9,7 @@ internal data class HomeUiState(
     val alertDialogParam: DefaultAlertDialogParam? = null,
     override val isLoading: Boolean = false
 ) : BaseUiState {
-    fun setIsLoading(isLoading: Boolean): HomeUiState {
-        return copy(isLoading = isLoading)
-    }
+    fun setIsLoading(isLoading: Boolean) = copy(isLoading = isLoading)
     fun setArticles(articles: List<ArticleModel>) = copy(articles = articles)
     fun setAlertDialogParam(param: DefaultAlertDialogParam?) = copy(alertDialogParam = param)
 }
