@@ -13,8 +13,8 @@ internal data class HomeUiState(
     override val isLoading: Boolean = false
 ) : BaseUiState {
     fun setIsLoading(isLoading: Boolean) = copy(isLoading = isLoading, showScreen = if (isLoading) true else showScreen)
-    fun setArticles(articles: List<ArticleModel>) = copy(articles = articles)
+    fun setArticles(articles: List<ArticleModel>) = copy(articles = articles, isLoading = false)
     fun setAlertDialogParam(param: DefaultAlertDialogParam?) = copy(alertDialogParam = param)
     fun setShowBiometricPrompt(show: Boolean) = copy(showBiometricPrompt = show)
-    fun setFinishApp(finish: Boolean) = copy(finishApp = finish)
+    fun setFinishApp(finish: Boolean) = copy(finishApp = finish, showBiometricPrompt = if (finish) false else showBiometricPrompt)
 }

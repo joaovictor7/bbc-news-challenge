@@ -1,10 +1,9 @@
 package com.bbcnewschallenge.core.data.utils
 
-import com.bbcnewschallenge.common.enums.Flavor
 import com.bbcnewschallenge.common.enums.FlavorDimension
 import com.bbcnewschallenge.common.providers.BuildConfigProvider
 import com.bbcnewschallenge.common.providers.DispatcherProvider
-import com.bbcnewschallenge.core.domain.errors.HttpError
+import com.bbcnewschallenge.core.domain.errors.ApiError
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.http.HttpStatusCode
@@ -35,14 +34,14 @@ internal class RemoteCallUtils @Inject constructor(
     private fun errorHandle(error: Throwable) = when (error) {
         is ClientRequestException -> {
             if (error.response.status == HttpStatusCode.Unauthorized)
-                HttpError.Unauthorized()
+                ApiError.Unauthorized()
             else {
-                HttpError.Request(error.message)
+                ApiError.Request(error.message)
             }
         }
-        is ServerResponseException -> HttpError.Request(error.message)
-        is IOException -> HttpError.Network()
-        else -> HttpError.Unknown(error.message)
+        is ServerResponseException -> ApiError.Request(error.message)
+        is IOException -> ApiError.Network()
+        else -> ApiError.Unknown(error.message)
     }
 
     private companion object {

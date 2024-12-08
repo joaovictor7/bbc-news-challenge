@@ -64,15 +64,15 @@ abstract class BaseViewModel<UiState : BaseUiState>(
     }
 
     protected fun runAsyncTask(
-        onStart: (suspend () -> Unit)? = null,
+        onStart: (() -> Unit)? = null,
         onCompletion: (suspend () -> Unit)? = null,
         onError: (suspend (Throwable) -> Unit)? = null,
         onAsyncTask: suspend CoroutineScope.() -> Unit
     ) {
         with(viewModelScope) {
+            onStart?.invoke()
             launch {
                 safeRunTask(onError) {
-                    onStart?.invoke()
                     onAsyncTask()
                 }
             }.invokeOnCompletion {

@@ -64,7 +64,6 @@ internal class HomeViewModel @Inject constructor(
     private fun getArticles() = runAsyncTask(
         onError = ::handleRequestError,
         onStart = { updateUiState { it.setIsLoading(true) } },
-        onCompletion = { updateUiState { it.setIsLoading(false) } },
     ) {
         val articles = getTopHeadlinesUseCase()
         updateUiState {
@@ -78,7 +77,7 @@ internal class HomeViewModel @Inject constructor(
                 getErrorAlertDialogParam(error) {
                     updateUiState { it.setAlertDialogParam(null) }
                 }
-            ).setArticles(emptyList())
+            )
         }
     }
 }
