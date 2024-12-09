@@ -12,14 +12,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class NewsDetailViewModel @Inject constructor(
+    destination: NewsDetailDestination? = null,
     @NavGraphQualifier(NavGraph.MAIN) override val navigationManager: NavigationManager
 ) : BaseViewModel<NewsDetailUiState>(NewsDetailScreenAnalytic, NewsDetailUiState()),
     NewsDetailCommandReceiver {
 
+    private val destination = destination ?: navigationManager.getParam<NewsDetailDestination>()
+
     override val commandReceiver = this
 
     override fun initUiState() {
-        val destination = navigationManager.getParam<NewsDetailDestination>()
         updateUiState {
             it.copy(
                 imageUrl = destination.imageUrl,

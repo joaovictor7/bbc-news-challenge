@@ -119,7 +119,7 @@ private class HomeViewModelTest : CoroutinesTest {
         }
     }
 
-    private fun initViewModel(getTopHeadlinesUseCase: GetTopHeadlinesUseCase = this.getTopHeadlinesUseCase) =
+    private fun initViewModel() =
         HomeViewModel(
             getTopHeadlinesUseCase = getTopHeadlinesUseCase,
             biometricsProvider = biometricsProvider,
